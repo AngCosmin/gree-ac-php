@@ -16,25 +16,21 @@ class Controller extends BaseController
 
     public function updateStatus(Request $request)
     {
-        $oFinder = new DeviceFinder();
-        $oDevice = new Device();
-        $oData = $oFinder->scan();
-        $oDevice->cid = $oData->cid;
-        $oDevice->mid = $oData->cid;
-        $oDevice->mac = $oData->mac;
-        $oDevice->name = $oData->name;
-        $oDevice->pair();
+    public function index() {
+        $finder = new DeviceFinder();
+        $device = new Device();
+        $data = $finder->scan();
+        $device->cid = $data->cid;
+        $device->mid = $data->cid;
+        $device->mac = $data->mac;
+        $device->name = $data->name;
+        $device->pair();
 
-        $aData = $request->all();
-        if (isset($aData['powerToggle'])) {
-            $oDevice->on();
-        } else {
-            $oDevice->off();
-            return;
-        }
+        $device->off();
+        // $device->setTemperature(22);
+        // $device->setFanSpeed(3);
+        // $device->setSwing(1);
 
-        if (isset($aData['temp'])) {
-            $oDevice->setTemp($aData['temp']);
-        }
+        return "Done";
     }
 }
