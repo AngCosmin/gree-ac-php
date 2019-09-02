@@ -5,7 +5,7 @@ class DeviceFinder
 
     public function scan()
     {
-        $fp = fsockopen("udp://192.168.1.109", 7000, $errno, $errstr);
+        $fp = fsockopen("udp://192.168.0.139", 7000, $errno, $errstr);
         if (!$fp) {
             echo "ERROR: $errno - $errstr<br />\n";
         } else {
